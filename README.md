@@ -1,6 +1,6 @@
 # RE2
 
-This is an implementation of the ACL 2019 paper "Simple and Effective Text Matching with Richer Alignment Features".
+This is an implementation of the ACL 2019 paper [Simple and Effective Text Matching with Richer Alignment Features](https://www.aclweb.org/anthology/P19-1465).
 
 ## Quick Links
 
