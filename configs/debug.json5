@@ -1,0 +1,12 @@
+{
+    batch_size: 8,
+    blocks: 2,
+    tensorboard: true,
+    log_per_updates: 2,
+    eval_subset: 100,
+    eval_per_updates: 50,
+    eval_warmup_samples: 0,
+    save_all: true,
+    sort_by_len: true,
+    pretrained_embeddings: 'resources/glove.6B.300d.txt',
+}

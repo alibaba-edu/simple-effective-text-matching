@@ -1,0 +1,74 @@
+{
+    basic: {
+        output_dir: 'default',
+        seed: null,
+        multi_gpu: false,
+    },
+
+    data: {
+        data_dir: null,
+        min_df: 5,
+        max_vocab: 999999, // capacity for words including out of embedding words
+        max_len: 999, // large enough number, treated as unlimited
+        min_len: 1,
+        lower_case: true, // whether to treat the data and embedding as lowercase.
+        sort_by_len: false,
+        pretrained_embeddings: 'resources/glove.840B.300d.txt',
+        embedding_dim: 300,
+        embedding_mode: 'freq', // (options: 'freq', 'last', 'avg', 'strict') what to do when duplicated embedding tokens (after normalization) are found.
+    },
+
+    model: {
+        hidden_size: 150,
+        dropout_keep_prob: 0.8,
+        blocks: 2,
+        encoder: {
+            enc_layers: 2,
+            kernel_size: 3,
+        },
+        alignment: 'linear', // linear, identity
+        fusion: 'full', // full, simple
+        connection: 'aug', // aug, residual
+        prediction: 'full', // full, symmetric, simple
+
+    },
+
+    logging: {
+        log_file: 'log.txt',
+        log_per_samples: 5120,
+        tensorboard: true,
+    },
+
+    training: {
+        epochs: 30,
+        batch_size: 128,
+        grad_clipping: 5,
+        lr: 1e-3,
+        beta1: 0.9,
+        beta2: 0.999,
+        max_loss: 999., // tolerance for unstable training
+        lr_decay_rate: 0.95, // exp decay rate for lr
+        lr_decay_samples: 128000,
+        min_lr: 6e-5,
+        lr_warmup_samples: 0, // linear warmup steps for lr
+    },
+
+    evaluation: {
+        // available metrics: acc, auc, f1, map, mrr
+        metric: 'acc', // for early stopping
+        watch_metrics: ['auc', 'f1'], // shown in logs
+        eval_file: 'dev',
+        eval_per_samples: 6400,
+        eval_per_samples_warmup: 40000,
+        eval_warmup_samples: 0, // after this many steps warmup mode for eval ends
+        min_samples: 0, // train at least these many steps, not affected by early stopping
+        tolerance_samples: 400000, // early stopping
+        eval_epoch: true, // eval after epoch
+    },
+
+    persistence: {
+        save: true,
+        save_all: false,
+        max_checkpoints: 1,
+    },
+}

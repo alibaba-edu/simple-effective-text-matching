@@ -1,0 +1,26 @@
+{
+    data_dir: 'data/wikiqa',
+    output_dir: 'wikiqa',
+    metric: 'mrr',
+    watch_metrics: ['map'],
+
+    model: {
+        enc_layers: 3,
+        blocks: 2,
+        hidden_size: 200,
+        prediction: 'simple',
+    },
+
+    routine: {
+        log_per_samples: 256,
+        eval_per_samples: 1280,
+        tolerance_samples: 256000,
+        eval_epoch: false,
+    },
+
+    optim: {
+        lr: 0.001,
+        lr_decay_rate: 1.0,
+        batch_size: 128,
+    },
+}

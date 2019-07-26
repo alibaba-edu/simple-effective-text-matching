@@ -1,0 +1,29 @@
+{
+    data_dir: 'data/quora',
+    output_dir: 'quora',
+    metric: 'acc',
+
+    model: {
+        enc_layers: 2,
+        blocks: 2,
+        prediction: 'symmetric',
+        hidden_size: 200,
+        max_len: 100,
+    },
+
+    routine: {
+        eval_per_samples: 12800,
+        eval_warmup_samples: 3584000,
+        eval_per_samples_warmup: 512000,
+        min_samples: 5120000,
+        tolerance_samples: 2560000,
+    },
+
+    optim: {
+        lr: 0.0012,
+        min_lr: 6e-5,
+        lr_decay_samples: 256000,
+        batch_size: 512,
+        lr_warmup_samples: 0,
+    },
+}

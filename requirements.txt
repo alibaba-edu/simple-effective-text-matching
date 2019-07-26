@@ -1,0 +1,7 @@
+tqdm
+nltk
+numpy
+scikit-learn
+msgpack-python
+tensorboardX
+json5

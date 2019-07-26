@@ -1,0 +1,75 @@
+[
+    // robustness checks for SNLI
+    {
+        name: 'robustness-blocks',
+        __parents__: [
+            'default',
+            'data/snli',
+        ],
+        __repeat__: 10,
+        __iter__: {'blocks':  [1, 2, 3, 4, 5]},
+        enc_layers: 2,
+        save: false,
+        multi_gpu: true,
+    },
+    {
+        name: 'robustness-layers',
+        __parents__: [
+            'default',
+            'data/snli',
+        ],
+        __repeat__: 10,
+        __iter__: {'enc_layers':  [1, 2, 3, 4, 5]},
+        blocks: 2,
+        save: false,
+        multi_gpu: true,
+    },
+    // robustness checks for SciTail
+    {
+        name: 'robustness-blocks',
+        __parents__: [
+            'default',
+            'data/scitail',
+        ],
+        __repeat__: 10,
+        __iter__: {'blocks':  [1, 2, 3, 4, 5]},
+        enc_layers: 2,
+        save: false,
+    },
+    {
+        name: 'robustness-layers',
+        __parents__: [
+            'default',
+            'data/scitail',
+        ],
+        __repeat__: 10,
+        __iter__: {'enc_layers':  [1, 2, 3, 4, 5]},
+        blocks: 2,
+        save: false,
+    },
+    // robustness checks for Quora
+    {
+        name: 'robustness-blocks',
+        __parents__: [
+            'default',
+            'data/quora',
+        ],
+        __repeat__: 10,
+        __iter__: {'blocks':  [1, 2, 3, 4, 5]},
+        enc_layers: 2,
+        save: false,
+        multi_gpu: true,
+    },
+    {
+        name: 'robustness-layers',
+        __parents__: [
+            'default',
+            'data/quora',
+        ],
+        __repeat__: 10,
+        __iter__: {'enc_layers':  [1, 2, 3, 4, 5]},
+        blocks: 2,
+        save: false,
+        multi_gpu: true,
+    },
+]
