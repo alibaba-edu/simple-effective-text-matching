@@ -15,6 +15,7 @@
 
 
 import os
+import re
 import sys
 import random
 import pickle
@@ -231,19 +232,20 @@ class Model:
             pickle.dump(params, f)
 
     @classmethod
-    def load(cls, sess, model_path, initialize_tables=False):
-        saver = tf.train.import_meta_graph(model_path + '.meta')
-        sess.run(tf.global_variables_initializer())
-        if initialize_tables:
-            sess.run(tf.tables_initializer())
-        saver.restore(sess, model_path)
-
+    def load(cls, sess, model_path):
         with open(model_path + '.stat', 'rb') as f:
             checkpoint = pickle.load(f)
         args = checkpoint['args']
         args.summary_dir = os.path.dirname(model_path)
         args.output_dir = os.path.dirname(args.summary_dir)
-        return cls(args, sess, updates=checkpoint['updates']), checkpoint
+        model = cls(args, sess, updates=checkpoint['updates'])
+
+        init_vars = tf.train.list_variables(model_path)
+        model_vars = {re.match("^(.*):\\d+$", var.name).group(1): var for var in tf.global_variables()}
+        assignment_map = {name: model_vars[name] for name, _ in init_vars if name in model_vars}
+        tf.train.init_from_checkpoint(model_path, assignment_map)
+        sess.run(tf.global_variables_initializer())
+        return model, checkpoint
 
     @staticmethod
     def num_parameters(exclude_embed=False):
