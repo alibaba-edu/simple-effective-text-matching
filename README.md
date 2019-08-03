@@ -13,18 +13,18 @@ This is an implementation of the ACL 2019 paper [Simple and Effective Text Match
 RE2 is a fast and strong neural architecture for general purpose text matching applications. 
 In a text matching task, a model takes two text sequences as input and predicts their relationship.
 This method aims to explore what is sufficient for strong performance in these tasks. 
-It simplifies many slow components which are previously considered as core building blocks in text matching,
-while keeping three key features directly available for inter-sequence alignment: 
-original point-wise features, previous aligned features, and contextual features.
+It simplifies or omits many slow components which are previously considered as core building blocks in text matching.
+It achieves its performance by a simple idea, which is keeping three key features directly available for inter-sequence alignment and fusion: 
+previous aligned features (**R**esidual vectors), original point-wise features (**E**mbedding vectors), and contextual features (**E**ncoder output).
 
 RE2 achieves performance on par with the state of the art on four benchmark datasets: SNLI, SciTail, Quora and WikiQA,
 across tasks of natural language inference, paraphrase identification and answer selection 
-with no or few task-specific adaptations. It has at least 6 times faster inference speed compared to similarly performed models.
+with no or few task-specific adaptations. It has at least 6 times faster inference speed compared with similarly performed models.
 
 <p align="center"><img width="50%" src="figure.png" /></p>
 
 The following table lists major experiment results. 
-The paper reports the average and standard deviation of 10 runs. 
+The paper reports the average and standard deviation of 10 runs and the results can be easily reproduced. 
 Inference time (in seconds) is measured by processing a batch of 8 pairs of length 20 on Intel i7 CPUs.
 The computation time of POS features used by CSRAN and DIIN is not included.
 
