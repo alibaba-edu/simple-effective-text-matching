@@ -73,7 +73,7 @@ dataset (pre-processed by [Wang et al.](https://github.com/zhiguowang/BiMPM)) to
 to `data/orig`.
 - `cd data && python prepare_wikiqa.py`
 - Download and unzip [evaluation scripts](http://cs.stanford.edu/people/mengqiu/data/qg-emnlp07-data.tgz). 
-Use the `make` command to compile the source files in `qg-emnlp07-data/eval/trec_eval-8.0`.
+Use the `make -B` command to compile the source files in `qg-emnlp07-data/eval/trec_eval-8.0`.
 Move the binary file "trec_eval" to `resources/`.
 
 ## Usage
